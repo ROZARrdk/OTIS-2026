@@ -100,9 +100,7 @@ Options parseOptions(int argc, char** argv) {
     Options opt;
     int i = 1;
     while (i < argc) {
-        const std::string arg = argv[i];
-
-        if (arg == "--help" || arg == "-h") {
+        if (const std::string arg = argv[i]; arg == "--help" || arg == "-h") {
             printUsage();
             std::exit(0);
         } else if (arg == "--model") {

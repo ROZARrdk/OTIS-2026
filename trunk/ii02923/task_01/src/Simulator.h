@@ -11,8 +11,7 @@
 /// Ошибка симуляции: некорректные параметры или невозможность сохранить таблицу.
 class SimulationError : public std::runtime_error {
 public:
-    explicit SimulationError(const std::string& message)
-        : std::runtime_error(message) {}
+    using std::runtime_error::runtime_error;
 };
 
 /// Одна строка таблицы результатов.
