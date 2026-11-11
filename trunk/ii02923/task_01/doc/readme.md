@@ -14,7 +14,7 @@
 <p align="right">Выполнил:</p>
 <p align="right">студент 2 курса</p>
 <p align="right">группы ИИ-29</p>
-<p align="right">Савко Н.</p>
+<p align="right">Савко Н.В.</p>
 <p align="right">Проверил:</p>
 <p align="right">Дворанинович Д. А.</p>
 

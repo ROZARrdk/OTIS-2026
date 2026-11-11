@@ -1,11 +1,19 @@
 #pragma once
 
 #include <iosfwd>
+#include <stdexcept>
 #include <string>
 #include <vector>
 
 #include "InputSignal.h"
 #include "Model.h"
+
+/// Ошибка симуляции: некорректные параметры или невозможность сохранить таблицу.
+class SimulationError : public std::runtime_error {
+public:
+    explicit SimulationError(const std::string& message)
+        : std::runtime_error(message) {}
+};
 
 /// Одна строка таблицы результатов.
 struct Sample {

@@ -87,41 +87,47 @@ int toInt(const std::string& text, const std::string& option) {
     }
 }
 
+std::string nextValue(int& index, int argc, char** argv,
+                      const std::string& option) {
+    if (index + 1 >= argc) {
+        throw std::invalid_argument("Для " + option + " не указано значение");
+    }
+    ++index;
+    return argv[index];
+}
+
 Options parseOptions(int argc, char** argv) {
     Options opt;
-    for (int i = 1; i < argc; ++i) {
+    int i = 1;
+    while (i < argc) {
         const std::string arg = argv[i];
-        auto next = [&](const std::string& option) -> std::string {
-            if (i + 1 >= argc) {
-                throw std::invalid_argument("Для " + option + " не указано значение");
-            }
-            return argv[++i];
-        };
 
         if (arg == "--help" || arg == "-h") {
             printUsage();
             std::exit(0);
         } else if (arg == "--model") {
-            opt.model = next(arg);
+            opt.model = nextValue(i, argc, argv, arg);
         } else if (arg == "--signal") {
-            opt.signal = parseSignalType(next(arg));
+            opt.signal = parseSignalType(nextValue(i, argc, argv, arg));
         } else if (arg == "--steps") {
-            opt.steps = toInt(next(arg), arg);
+            opt.steps = toInt(nextValue(i, argc, argv, arg), arg);
         } else if (arg == "--a") {
-            opt.a = toDouble(next(arg), arg);
+            opt.a = toDouble(nextValue(i, argc, argv, arg), arg);
         } else if (arg == "--b") {
-            opt.b = toDouble(next(arg), arg);
+            opt.b = toDouble(nextValue(i, argc, argv, arg), arg);
         } else if (arg == "--dt") {
-            opt.dt = toDouble(next(arg), arg);
+            opt.dt = toDouble(nextValue(i, argc, argv, arg), arg);
         } else if (arg == "--amplitude") {
-            opt.amplitude = toDouble(next(arg), arg);
+            opt.amplitude = toDouble(nextValue(i, argc, argv, arg), arg);
         } else if (arg == "--omega") {
-            opt.omega = toDouble(next(arg), arg);
+            opt.omega = toDouble(nextValue(i, argc, argv, arg), arg);
         } else if (arg == "--out") {
-            opt.outPath = next(arg);
+            opt.outPath = nextValue(i, argc, argv, arg);
         } else {
             throw std::invalid_argument("Неизвестный параметр: " + arg);
         }
+
+        ++i;
     }
     return opt;
 }

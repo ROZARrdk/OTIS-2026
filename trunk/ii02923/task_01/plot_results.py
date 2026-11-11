@@ -126,7 +126,7 @@ def plot_model(exe: Path, model: dict) -> Path:
         u = [row[1] for row in data]
         y = [row[2] for row in data]
 
-        line_y, = ax.plot(tau, y, color="#1f4e9c", linewidth=2.2, label="y(t)")
+        ax.plot(tau, y, color="#1f4e9c", linewidth=2.2, label="y(t)")
         ax.set_title(signal_title, fontsize=11)
         ax.set_xlabel("τ, номер шага")
         ax.set_ylabel("y(τ)", color="#1f4e9c")
@@ -149,7 +149,7 @@ def plot_model(exe: Path, model: dict) -> Path:
             transform=ax.transAxes,
             va="top",
             fontsize=8.5,
-            bbox=dict(boxstyle="round,pad=0.25", facecolor="white", alpha=0.75, edgecolor="#cccccc"),
+            bbox={"boxstyle": "round,pad=0.25", "facecolor": "white", "alpha": 0.75, "edgecolor": "#cccccc"},
         )
         # Пояснение к линиям — в подписи осей (y — синяя, u — оранжевая).
 

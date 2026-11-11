@@ -47,7 +47,7 @@ void Simulator::writeTable(const std::string& path,
                            const std::vector<Sample>& data) {
     std::ofstream out(path);
     if (!out) {
-        throw std::runtime_error("Не удалось открыть файл для записи: " + path);
+        throw SimulationError("Не удалось открыть файл для записи: " + path);
     }
     out << "tau\tu\ty\n";
     out << std::fixed << std::setprecision(6);
